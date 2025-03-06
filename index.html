@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/teaser.jpg" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>ROCKET-2: Steering Visuomotor Policy via Cross-View Goal Alignment</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>
+<body>
+
+  <style>
+    .gif-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      max-width: 600px;
+      /* Adjust as needed */
+      margin: auto;
+    }
+  
+    .gif-grid img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+  <style>
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 2 columns */
+        grid-template-rows: repeat(2, 1fr); /* 3 rows */
+        gap: 10px;
+    }
+    .video-grid iframe {
+        width: 320px;
+        height: 180px; /* Set a fixed height for iframes */
+        border: none; /* Remove border for cleaner look */
+    }
+  </style>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h2 class="title is-1 publication-title">ROCKET-2: Steering Visuomotor Policy via
+            Cross-View Goal Alignment</h2>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://phython96.github.io/" target="_blank">Shaofei Cai</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://muzhancun.github.io/" target="_blank">Zhancun Mu</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://liuanji.github.io/" target="_blank">Anji Liu</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="" target="_blank">Yitao Liang</a><sup>1*</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="eql-cntrb"><sup>1</sup>PKU</span>, 
+              <span class="eql-cntrb"><sup>2</sup>UCLA</span>
+            </div>
+
+            <span class="author-block">
+              <a href="https://craftjarvis.github.io/" target="_blank"><b>Team CraftJarvis</b></a>
+            </span>
+
+
+            <div class="is-size-5 publication-authors">
+              
+            </div>
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2503.02505" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+
+                <!-- Github link -->
+                <span class="link-block">
+                  <a href="https://github.com/CraftJarvis/ROCKET-2" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- YouTube link -->
+                <span class="link-block">
+                  <a href="https://www.youtube.com/watch?v=_3Sle15iaO4" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fa fa-youtube-play" style="color:red"></i>
+                    </span>
+                    <span>YouTube</span>
+                  </a>
+                </span>
+
+                <!-- Huggingface Link -->
+                <span class="link-block">
+                  <a href="https://huggingface.co/spaces/phython96/ROCKET-1-DEMO" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fa fa-desktop"></i>
+                    </span>
+                    <span>Demo</span>
+                  </a>
+                </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser Image -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+          <div style="text-align: center;">
+            <img src="static/images/teaser.jpg" alt="MY ALT TEXT" style="width: 100%; height: auto;" />
+          </div>
+      <h2 class="subtitle">
+        With <b>ROCKET-2</b>, the target object can be specified using a segmentation mask from the human’s camera view, while the agent learns to align with
+        human intent and take actions based on its own observations. Visual landmarks serve as key cues to establish
+        spatial relationships across camera views.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser image -->
+
+<!-- Paper abstract -->
+<section class="hero is-light">
+  <div class = "hero-body">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3" style="color: #0d47a1;">Abstract</h2>
+    <h2 class="subtitle has-text-justified">
+            We aim to develop a goal specification method that is semantically clear, spatially sensitive, and intuitive
+            for human users to guide agent interactions in embodied environments. Specifically, we propose a novel
+            cross-view goal alignment framework that allows users to specify target objects using segmentation
+            masks from their own camera views rather than the agent’s observations. We highlight that behavior
+            cloning alone fails to align the agent’s behavior with human intent when the human and agent camera
+            views differ significantly. To address this, we introduce two auxiliary objectives: cross-view consistency
+            loss and target visibility loss, which explicitly enhance the agent’s spatial reasoning ability. According to
+            this, we develop <b>ROCKET-2</b>, a state-of-the-art agent trained in Minecraft, achieving an improvement
+            in the efficiency of inference 3x to 6x. We show <b>ROCKET-2</b> can directly interpret goals from human
+            camera views for the first time, paving the way for better human-agent interaction.
+    </h2>
+  </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- Image carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3" style="color: #0d47a1;">Method</h2>
+      <div style="text-align: center;">
+        <img src="static/images/pipeline.png" alt="MY ALT TEXT" style="width: 100%; height: auto;"/>
+      </div>
+      <h2 class="subtitle has-text-justified">
+        <b>Policy Architecture.</b> <b>ROCKET-2</b> consists of three parts: (1) a non-causal transformer for spatial fusion, which establishes the relationship between
+        the agent’s and human’s camera views; (2) a causal transformer for temporal fusion, ensuring consistency for goal
+        tracking; (3) a decoder module, made of a feedforward neural network (FFN), which predicts goal-related visuals cues and
+        actions.
+      </h2>
+
+      <div style="text-align: center;">
+        <img src="static/images/comparison.png" alt="MY ALT TEXT" style="width: 60%; height: auto;" />
+      </div>
+      <h2 class="subtitle has-text-justified">
+        <b>Comparison to ROCKET-1.</b> Automated evaluation of ROCKETs relies on Molmo and
+        SAM to generate a segmentation mask for the target object in the given views.
+        ROCKET-1 (R1) requires object masks for all agent observations, whereas ROCKET-2 (R2) only
+        needs one or a few object masks. While increasing interaction frequency with Molmo improves ROCKET-1's performance,
+        it suffers from high inference time.
+      </h2>
+
+    </div>
+  </div>
+</section>
+<!-- End image carousel -->
+
+<!-- Image carousel -->
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3" style="color: #0d47a1;">
+        Experiments
+      </h2>
+        <div style="text-align: center;">
+          <img src="static/images/result.png" alt="MY ALT TEXT" style="width: 100%; height: auto;" />
+        </div>
+        <h2 class="subtitle has-text-justified">
+          <b>Performance-Efficiency Comparison on the Minecraft Interaction Benchmark.</b>
+          The x-axis represents inference speed (FPS), and the y-axis shows the interaction success rate. Numbers in parentheses
+          indicate the Molmo invocation interval, where larger values mean higher FPS. “+ track” denotes real-time
+          SAM-2 segmentation between Molmo calls, increasing inference time (applicable only to ROCKET-1). In most
+          cases, <b>ROCKET-2</b> achieves 3x to 6x faster while matching or surpassing ROCKET-1’s peak performance.
+        </h2>
+
+        <div style="text-align: center;">
+          <img src="static/images/human-agent.png" alt="MY ALT TEXT" style="width: 100%; height: auto;" />
+        </div>
+
+        <h2 class="subtitle has-text-justified">
+          <b>Case Study of Human-Agent Interaction.</b>
+            We demonstrate how a human interacts with <b>ROCKET-2</b>,
+            leveraging its spatial reasoning abilities. (Top Row) The human specifies a hay bale that is not visible
+            to <b>ROCKET-2</b>. By exploring the area around the visible landmark (house), <b>ROCKET-2</b> successfully locates
+            the goal. (Bottom Row) The human specifies a target tree in the presence of a tree distractor. <b>ROCKET-2</b>
+            accurately identifies the correct tree by reasoning about spatial relationships and landmarks. The agent’s
+            trajectories are visualized in bird’s-eye view maps.
+        </h2>
+
+        <div style="text-align: center;">
+          <img src="static/images/attention.png" alt="MY ALT TEXT" style="width: 100%; height: auto;" />
+        </div>
+        <h2 class="subtitle has-text-justified">
+          <b>Visualization Analysis of Cross-View Alignment.</b>
+          The vision patches (identified by white grid) represent a chosen background landmark in the agent’s current view
+          (instead of the goal object). We generated an attention map with the <i>spatial fusion transformer</i> using these
+          patches as queries and the goal view patches as keys and values. We found that <b>ROCKET-2</b> perfectly aligned with the
+          selected landmarks across views.
+        </h2>
+
+        <div style="text-align: center;">
+          <img src="static/images/non-homologous.png" alt="MY ALT TEXT" style="width: 50%; height: auto;" />
+        </div>
+        <h2 class="subtitle has-text-justified">
+          <b>Cross-Episode Generalization.</b>
+          The goal
+          view does not exist within the agent’s world but originates from a different episode. We observe that the
+          agent attempts to infer the semantic information underlying the goal specification.
+        </h2>
+
+    </div>
+  </div>
+</section>
+<!-- End image carousel -->
+
+<!--BibTex citation -->
+  <section class="section hero is-small" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title" style="color: #0d47a1;">BibTeX</h2>
+      <pre><code>
+@misc{cai2025rocket2,
+      title={ROCKET-2: Steering Visuomotor Policy via Cross-View Goal Alignment}, 
+      author={Shaofei Cai and Zhancun Mu and Anji Liu and Yitao Liang},
+      year={2025},
+      eprint={2503.02505},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2503.02505}, 
+}
+      </code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W3X4XYD8D9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W3X4XYD8D9');
+</script>
+
+  </body>
+  </html>
+
+
