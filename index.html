@@ -1,367 +1,413 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
-  <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="">
-  <meta property="og:title" content="ROCKET-2: Steering Visuomotor Policy via Cross-View Goal Alignment"/>
-  <meta property="og:description" content="ROCKET-2 is a novel agent framework allowing users to specify target objects from their own camera views."/>
-  <meta property="og:url" content="https://craftjarvis.github.io/ROCKET-2/"/>
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/teaser.jpg" />
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>ROCKET-2: Steering Visuomotor Policy via Cross-View Goal Alignment</title>
+        <link rel="icon" type="image/x-icon" href="/static/img/icons/favicon.ico">
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Open Graph -->
+        <meta property="og:url" content="https://craftjarvis.github.io/ROCKET-2/" />
+        <meta property="og:image" content="https://craftjarvis.github.io/ROCKET-2/static/img/teaser.jpg" />
+        <meta property="og:title" content="ROCKET-2: Steering Visuomotor Policy via Cross-View Goal Alignment" />
+        <meta property="og:description" content="ROCKET-2 is a novel agent framework allowing users to specify target objects from their own camera views." />
+
+        <!-- Twitter -->
+        <meta name="twitter:url" content="https://craftjarvis.github.io/ROCKET-2/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://craftjarvis.github.io/ROCKET-2/static/images/teaser.jpg" />
+        <meta name="twitter:title" content="ROCKET-2: Steering Visuomotor Policy via Cross-View Goal Alignment" />
+        <meta name="twitter:description" content="ROCKET-2 is a novel agent framework allowing users to specify target objects from their own camera views." />
+
+        <script src="./static/js/distill_template.v2.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+        <script src="https://rawgit.com/nstrayer/slid3r/master/dist/slid3r.js"></script>
+
+        <script defer="" src="./static/js/hider.js"></script>
+        <script src="./static/js/image_interact.js"></script>
+        <script src="./static/js/switch_videos.js"></script>
+
+        <link rel="stylesheet" href="./static/css/style.css">
+        <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"></script>
+        <script defer src="./static/js/fontawesome.all.min.js"></script>
 
 
-  <meta name="twitter:title" content="ROCKET-2: Steering Visuomotor Policy via Cross-View Goal Alignment">
-  <meta name="twitter:description" content="ROCKET-2 is a novel agent framework allowing users to specify target objects from their own camera views.">
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/teaser.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="Embodied vision: Active agents, simulation">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- medium zoom https://github.com/francoischalifour/medium-zoom -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>  <!-- jquery -->
+        <script defer src="./static/js/medium-zoom.min.js"></script>
+        <script defer src="./static/js/zoom.js"></script>
+    </head>
+    <body>
+        <div class="header-wrapper">
+            <div class="header-container" id="header-container">
+                <div class="header-content">
+                    <h1 style="margin-top: 0px">ROCKET-2</i></h1>
+                    <h2>Steering Visuomotor Policy via <i>Cross-View</i> Goal Alignment</h2>
+                        <p>
+                            Introducing ROCKET-2, a <em><strong>state-of-the-art</strong></em> agent trained in Minecraft.
+                            Our contributions are threefold:
+                        </p>
 
+                        <div class="icon-container">
+                            <div class="icon-item">
+                                <img src="./static/img/icons/visual.svg" alt="Visual Representation Icon">
+                                <div><strong>User-friendly Interface</strong>: We introduce a user-friendly interface that allows humans to specify goals using segmentation masks
+                                from their camera view.</div>
+                            </div>
+                            <div class="icon-item">
+                                <img src="./static/img/icons/connector.svg" alt="Connector Design Icon">
+                                <div><strong>Agent Design</strong>: We propose <i>cross-view consistency loss</i> and <i>target visibility loss</i> to explicitly enhance the agent’s ability.</div>
+                            </div>
+                            <div class="icon-item">
+                                <img src="./static/img/icons/eval.svg" alt="Benchmarking Icon">
+                                <div><strong>Experiment Results</strong>: ROCKET-2 achieves an improvement
+                                in the efficiency of inference <strong>3x to 6x</strong> while maintaining the same level of performance as the previous state-of-the-art agent.</div>
+                            </div>
+                        </div>
 
-  <title>ROCKET-2: Steering Visuomotor Policy via Cross-View Goal Alignment</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-  rel="stylesheet">
-
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-</head>
-<body>
-
-  <style>
-    .gif-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      max-width: 600px;
-      /* Adjust as needed */
-      margin: auto;
-    }
-  
-    .gif-grid img {
-      width: 100%;
-      height: auto;
-    }
-  </style>
-  <style>
-    .video-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 2 columns */
-        grid-template-rows: repeat(2, 1fr); /* 3 rows */
-        gap: 10px;
-    }
-    .video-grid iframe {
-        width: 320px;
-        height: 180px; /* Set a fixed height for iframes */
-        border: none; /* Remove border for cleaner look */
-    }
-  </style>
-
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h2 class="title is-1 publication-title">ROCKET-2: Steering Visuomotor Policy via
-            Cross-View Goal Alignment</h2>
-            <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
-              <span class="author-block">
-                <a href="https://phython96.github.io/" target="_blank">Shaofei Cai</a><sup>1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://muzhancun.github.io/" target="_blank">Zhancun Mu</a><sup>1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://liuanji.github.io/" target="_blank">Anji Liu</a><sup>2</sup>,
-              </span>
-              <span class="author-block">
-                <a href="" target="_blank">Yitao Liang</a><sup>1*</sup>
-              </span>
+                    <div class="button-container">
+                        <!-- replace arxiv -->
+                        <a href="https://arxiv.org/abs/2503.02505" class="button paper-link" target="_blank">
+                            <span class="icon is-small">
+                                <i class="ai ai-arxiv"></i>
+                            </span>
+                            arXiv
+                        </a>
+                        <!-- replace pdf -->
+                        <a href="https://arxiv.org/pdf/2503.02505" class="button paper-link" target="_blank">
+                            <span class="icon is-small">
+                                <i class="fas fa-file-pdf"></i>
+                            </span>
+                            <span>pdf</span>
+                        </a>
+                        <!-- replace image -->
+                        <a href="https://github.com/CraftJarvis/ROCKET-2" class="button" target="_blank">
+                            <span class="icon is-small">
+                                <i class="fab fa-github"></i>
+                            </span>
+                            <span>Code</span>
+                        </a>
+                        <!-- <br> -->
+                        <!-- <a href="https://huggingface.co/collections/nyu-visionx/cambrian-1-models-666fa7116d5420e514b0f23c" class="button" target="_blank">
+                            <span class="icon is-small">
+                                <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face logo" style="height: 1em;">
+                            </span>
+                            <span>Checkpoints</span>
+                        </a> -->
+                    </div>
+                </div>
+                <div class="header-image">
+                    <img draggable="false" src="static/img/teaser.jpg" alt="Teaser Image" class="teaser-image">
+                </div>
             </div>
-
-            <div class="is-size-5 publication-authors">
-              <span class="eql-cntrb"><sup>1</sup>PKU</span>, 
-              <span class="eql-cntrb"><sup>2</sup>UCLA</span>
-            </div>
-
-            <span class="author-block">
-              <a href="https://craftjarvis.github.io/" target="_blank"><b>Team CraftJarvis</b></a>
-            </span>
-
-
-            <div class="is-size-5 publication-authors">
-              
-            </div>
-
-                <!-- ArXiv abstract Link -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/pdf/2503.02505" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                    </span>
-                    <span>arXiv</span>
-                  </a>
-                </span>
-
-                <!-- Github link -->
-                <span class="link-block">
-                  <a href="https://github.com/CraftJarvis/ROCKET-2" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-
-                <!-- YouTube link -->
-                <span class="link-block">
-                  <a href="https://www.youtube.com/watch?v=8gY7HzeV_gg&list=PLm_83zcZf_V0yfyb3oOgb9juLe6J65LjX" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fa fa-youtube-play" style="color:red"></i>
-                    </span>
-                    <span>YouTube</span>
-                  </a>
-                </span>
-
-                <!-- Huggingface Link -->
-                <!-- <span class="link-block">
-                  <a href="https://huggingface.co/spaces/phython96/ROCKET-1-DEMO" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fa fa-desktop"></i>
-                    </span>
-                    <span>Demo</span>
-                  </a>
-                </span> -->
-
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <d-article>
 
-<!-- Teaser Image -->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-          <div style="text-align: center;">
-            <img src="static/images/teaser.jpg" alt="MY ALT TEXT" style="width: 100%; height: auto;" />
-          </div>
-      <h2 class="subtitle">
-        With <b>ROCKET-2</b>, the target object can be specified using a segmentation mask from the human’s camera view, while the agent learns to align with
-        human intent and take actions based on its own observations. Visual landmarks serve as key cues to establish
-        spatial relationships across camera views.
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser image -->
+        <div class="byline">
+            <div class="byline-container">
+                <div class="byline-column">
+                    <h3>Authors</h3>
+                    <p><a href="https://phython96.github.io/" class="author-link" target="_blank">Shaofei Cai</a> <sup>△</sup>
+                    </p>
+                    <p><a href="https://muzhancun.github.io/" class="author-link" target="_blank">Zhancun Mu</a> <sup>△</sup></p>
+                    <p><a href="https://liuanji.github.io/" class="author-link" target="_blank">Anji Liu</a> <sup>▲</sup>
+                    </p>
+                    <p><a href="https://scholar.google.com/citations?user=KVzR1XEAAAAJ&hl=en" class="author-link" target="_blank">Yitao Liang</a> <sup>△</sup></p>
+                </div>
+                <div class="byline-column">
+                    <h3>Affiliations</h3>
+                    <p>
+                        <sup>△</sup>
+                        <a href="https://www.ai.pku.edu.cn/" class="affiliation-link" target="_blank">Peking University</a>
+                    </p>
+                    <p>
+                        <sup>▲</sup>
+                        <a href="https://www.ucla.edu/" class="affiliation-link" target="_blank">
+                            University of California, Los Angeles
+                        </a>
+                    </p>
+                </div>
+                <div class="byline-column">
+                    <h3>Date</h3>
+                    <p>
+                        Mar 14<sup>th</sup>, 2025
+                    </p>
+                </div>
+            </div>
+        </div>
 
-<!-- Paper abstract -->
-<section class="hero is-light">
-  <div class = "hero-body">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3" style="color: #0d47a1;">Abstract</h2>
-    <h2 class="subtitle has-text-justified">
+        <div class="l-page video-container" style="margin-left: 4%; margin-bottom: 20px">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/y3jljKXaVOU"
+                title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture"
+                allowfullscreen></iframe>
+            <figcaption style="text-align: center">Playing with <b>ROCKET-2</b> on Gradio by specifying the target object from your own camera view.</figcaption>
+        </div>
+
+        <p class="text abstract">
+            <br>
             We aim to develop a goal specification method that is semantically clear, spatially sensitive, and intuitive
-            for human users to guide agent interactions in embodied environments. Specifically, we propose a novel
-            cross-view goal alignment framework that allows users to specify target objects using segmentation
-            masks from their own camera views rather than the agent’s observations. We highlight that behavior
-            cloning alone fails to align the agent’s behavior with human intent when the human and agent camera
-            views differ significantly. To address this, we introduce two auxiliary objectives: cross-view consistency
-            loss and target visibility loss, which explicitly enhance the agent’s spatial reasoning ability. According to
-            this, we develop <b>ROCKET-2</b>, a state-of-the-art agent trained in Minecraft, achieving an improvement
-            in the efficiency of inference 3x to 6x. We show <b>ROCKET-2</b> can directly interpret goals from human
+            for human users to guide agent interactions in embodied environments.
+            <br><br>
+
+            To this end,we develop <strong>ROCKET-2</strong>, a state-of-the-art agent trained in Minecraft, achieving an improvement
+            in the efficiency of inference <strong>3x to 6x</strong>. We show <strong>ROCKET-2</strong> can directly interpret goals from human
             camera views for the first time, paving the way for better human-agent interaction.
-    </h2>
-  </div>
-  </div>
-</section>
-<!-- End paper abstract -->
 
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3" style="color: #0d47a1;">Demonstration</h2>
-      <div style="text-align: center;">
-        <iframe src="https://www.youtube.com/embed/y3jljKXaVOU" width="640" height="360" allowfullscreen></iframe>
-      </div>
-      <h2 class="subtitle has-text-centered">
-        Playing with <b>ROCKET-2</b> on Gradio by specifying the target object from your own camera view.
-      </h2>
-    </div>
-  </div>
-</section>
+            <br><br>
+            Our contributions are threefold:
+            <ol class="text">
+                <li><strong><a href="#goal-representation">User-friendly Interface</a></strong>: We introduce a user-friendly interface that allows humans to specify goals using segmentation masks from their camera view.</li>
+                <li><strong><a href="#agent-design">Agent Design</a></strong>: We propose <i>cross-view consistency loss</i> and <i>target visibility loss</i> to explicitly enhance the agent’s ability.</li>
+                <li><strong><a href="#experiment-results">Experiment Results</a></strong>: <strong>ROCKET-2</strong> achieves an improvement in the efficiency of inference <strong>3x to 6x</strong> while maintaining the same level of performance as the previous state-of-the-art agent.</li>
+            </ol>
+        </p>
 
-<!-- Image carousel -->
-<section class="hero is-light">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3" style="color: #0d47a1;">Method</h2>
-      <div style="text-align: center;">
-        <img src="static/images/pipeline.png" alt="MY ALT TEXT" style="width: 100%; height: auto;"/>
-      </div>
-      <h2 class="subtitle has-text-justified">
-        <b>Policy Architecture.</b> <b>ROCKET-2</b> consists of three parts: (1) a non-causal transformer for spatial fusion, which establishes the relationship between
-        the agent’s and human’s camera views; (2) a causal transformer for temporal fusion, ensuring consistency for goal
-        tracking; (3) a decoder module, made of a feedforward neural network (FFN), which predicts goal-related visuals cues and
-        actions.
-      </h2>
-
-      <div style="text-align: center;">
-        <img src="static/images/comparison.png" alt="MY ALT TEXT" style="width: 60%; height: auto;" />
-      </div>
-      <h2 class="subtitle has-text-justified">
-        <b>Comparison to ROCKET-1.</b> Automated evaluation of ROCKETs relies on Molmo and
-        SAM to generate a segmentation mask for the target object in the given views.
-        ROCKET-1 (R1) requires object masks for all agent observations, whereas ROCKET-2 (R2) only
-        needs one or a few object masks. While increasing interaction frequency with Molmo improves ROCKET-1's performance,
-        it suffers from high inference time.
-      </h2>
-
-    </div>
-  </div>
-</section>
-<!-- End image carousel -->
-
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3" style="color: #0d47a1;">
-        Experiments
-      </h2>
-        <div style="text-align: center;">
-          <img src="static/images/result.png" alt="MY ALT TEXT" style="width: 100%; height: auto;" />
-        </div>
-        <h2 class="subtitle has-text-justified">
-          <b>Performance-Efficiency Comparison on the Minecraft Interaction Benchmark.</b>
-          The x-axis represents inference speed (FPS), and the y-axis shows the interaction success rate. Numbers in parentheses
-          indicate the Molmo invocation interval, where larger values mean higher FPS. “+ track” denotes real-time
-          SAM-2 segmentation between Molmo calls, increasing inference time (applicable only to ROCKET-1). In most
-          cases, <b>ROCKET-2</b> achieves 3x to 6x faster while matching or surpassing ROCKET-1’s peak performance.
-        </h2>
-
-        <div style="text-align: center;">
-          <img src="static/images/human-agent.png" alt="MY ALT TEXT" style="width: 100%; height: auto;" />
+        <div class="icon-row">
+            <a href="#goal-representation" class="icon-link">
+                <img src="static/img/icons/visual.svg" alt="Visual Representation Logo" class="icon">
+                User-friendly<br>Interface
+            </a>
+            <a href="#agent-design" class="icon-link">
+                <img src="static/img/icons/connector.svg" alt="Connector Design Logo" class="icon">
+                Agent<br>Design
+            </a>
+            <a href="#experiment-results" class="icon-link">
+                <img src="static/img/icons/eval.svg" alt="Benchmarking Logo" class="icon">
+                Experiment<br>Results
+            </a>
         </div>
 
-        <h2 class="subtitle has-text-justified">
-          <b>Case Study of Human-Agent Interaction.</b>
-            We demonstrate how a human interacts with <b>ROCKET-2</b>,
-            leveraging its spatial reasoning abilities. (Top Row) The human specifies a hay bale that is not visible
-            to <b>ROCKET-2</b>. By exploring the area around the visible landmark (house), <b>ROCKET-2</b> successfully locates
-            the goal. (Bottom Row) The human specifies a target tree in the presence of a tree distractor. <b>ROCKET-2</b>
-            accurately identifies the correct tree by reasoning about spatial relationships and landmarks. The agent’s
-            trajectories are visualized in bird’s-eye view maps.
-        </h2>
+        <p class="click-hint" style="width: 85%;">
+            <img src="static/img/icons/click.gif" style="width: 1.5rem">
+            <strong>Click to jump to each section.</strong>
+        </p>
 
-        <div style="text-align: center;">
-          <img src="static/images/attention.png" alt="MY ALT TEXT" style="width: 100%; height: auto;" />
-        </div>
-        <h2 class="subtitle has-text-justified">
-          <b>Visualization Analysis of Cross-View Alignment.</b>
-          The vision patches (identified by white grid) represent a chosen background landmark in the agent’s current view
-          (instead of the goal object). We generated an attention map with the <i>spatial fusion transformer</i> using these
-          patches as queries and the goal view patches as keys and values. We found that <b>ROCKET-2</b> perfectly aligned with the
-          selected landmarks across views.
-        </h2>
+        <hr>
 
-        <div style="text-align: center;">
-          <img src="static/images/non-homologous.png" alt="MY ALT TEXT" style="width: 50%; height: auto;" />
-        </div>
-        <h2 class="subtitle has-text-justified">
-          <b>Cross-Episode Generalization.</b>
-          The goal
-          view does not exist within the agent’s world but originates from a different episode. We observe that the
-          agent attempts to infer the semantic information underlying the goal specification.
-        </h2>
+        <div id='goal-representations' class="vision-block">
 
-    </div>
-  </div>
-</section>
-<!-- End image carousel -->
+            <div id='goal-representation' class="viusal-representation-block">
+            <h1 class="text">Goal Representation</h1>
 
-<!--BibTex citation -->
-  <section class="section hero is-light" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title" style="color: #0d47a1;">BibTeX</h2>
-      <pre><code>
-@misc{cai2025rocket2,
-      title={ROCKET-2: Steering Visuomotor Policy via Cross-View Goal Alignment}, 
-      author={Shaofei Cai and Zhancun Mu and Anji Liu and Yitao Liang},
-      year={2025},
-      eprint={2503.02505},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI},
-      url={https://arxiv.org/abs/2503.02505}, 
-}
-      </code></pre>
-    </div>
-</section>
-<!--End BibTex citation -->
+                <p class="text">
+                    Our goal is to learn a
+                    goal-conditioned visuomotor policy, which allows humans to specify goal objects for interaction using semantic
+                    segmentation across camera views. Formally, we aim to learn a policy
+                    \( \pi_{cross}(a_t \mid o_{1:t}, \{o_g, m_g\}, c_g) \), where \( a_t \) represents the
+                    action at time \( t \), \( c_g \) denotes the type of interaction.
+                    <br><br>
 
-
-  <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
+                    To train such visuomotor policy, we assume access to a dataset
+                    \(D_{cross} = \{c^n, (o_t^n, a_t^n, o_g^n, m_g^n)_{t=1}^{L(n)}\}_{n=1}^{N}\) consisting of \(N\) successful demonstration episodes,
+                    where \(L(n)\) is the length of episode \(n\).
+                    <strong>Within each episode, if \(m_t\) is non-empty, all \((o_t , m_t)\) pairs indicate the
+                    same object.</strong> Consequently, we can arbitrarily pick one observation frame as the goal view condition for the entire trajectory.
+                </p>
 
         </div>
-      </div>
-    </div>
-  </div>
-</footer>
+        </div>
 
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+        <hr>
 
-    <!-- End of Statcounter Code -->
+        <div id='agent-design' class="connector-block">
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-W3X4XYD8D9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+            <h1 class="text">Agent Design</h1>
+            <p class="text">
+                <strong>ROCKET-2 Architecture.</strong>
+                <strong>ROCKET-2</strong> consists of three parts: (1) a non-causal
+                transformer for spatial fusion, which establishes the
+                relationship between
+                the agent’s and human’s camera views; (2) a causal transformer for temporal fusion, ensuring consistency for goal
+                tracking; (3) a decoder module, made of a feedforward neural network (FFN), which predicts goal-related visuals cues
+                and
+                actions.
+            </p>
+            <d-figure id="architecture">
+                <figure>
+                    <img data-zoomable="" draggable="false" src="static/img/pipeline.png" alt="ROCKET-2 Architecture">
+                    <figcaption>
+                        <strong>Figure 1.</strong> ROCKET-2 Architecture.
+                    </figcaption>
+                </figure>
+            </d-figure>
 
-  gtag('config', 'G-W3X4XYD8D9');
-</script>
+            <p class="text">
+                <strong>Cross-View Dataset Generation.</strong>
+                We employ
+                the backward trajectory relabeling technique proposed in <d-cite key="cai2024rocket"></d-cite> to automate the annotation of the OpenAI
+                Contractor Dataset <d-cite key="vpt"></d-cite>.
+                For each episode, we randomly sample a frame from the trajectory as the goal view and use the segmentation mask of the goal object as the goal mask.
+            </p>
 
-  </body>
-  </html>
+            <p class="text">
+                <strong>Cross-View Consistency Loss.</strong>
+                We observe that relying solely on behavior cloning loss <d-cite key="bc"></d-cite> is insufficient.
+                Therefore, we propose a cross-view consistency loss.
+                Conditioned on the segmentation from one camera view, the model is trained to generate the segmentation for another camera view
+            </p>
 
+            <p class="text">
+                <strong>Target Visibility Loss.</strong>
+                Due to the partial observability in 3D environments, it is common for
+                target objects in interaction trajectories to disappear from the field of view and reappear later.
+                We propose training the model to predict
+                whether the target object is currently visible.
+            </p>
 
+            <h2 class="text">Comparison to ROCKET-1</h2>
+            <p class="text">
+                Automated evaluation of ROCKETs relies on <strong>Molmo</strong> and
+                <strong>SAM</strong> to generate a segmentation mask for the target object in the given views.
+                <strong>ROCKET-1 (R1)</strong> requires object masks for all agent observations, whereas <strong>ROCKET-2 (R2)</strong> only
+                needs one or a few object masks. While increasing interaction frequency with Molmo improves ROCKET-1's performance,
+                it suffers from high inference time.
+            </p>
+            <d-figure id="comparison">
+                <figure>
+                    <div style="text-align: center;">
+                    <img data-zoomable="" draggable="false" src="static/img/comparison.png" alt="ROCKETs" style="width: 50%; height: auto;">
+                    </div>
+                    <figcaption>
+                        <strong>Figure 2. ROCKET-Series Inference Pipeline Details.</strong>
+                        Molmo can pinpoint the target object based on the task
+                        prompt. SAM uses the point to generate object mask
+                        \(m_t\) w.r.t. \(o_t\) and supports real-time object tracking.
+                    </figcaption>
+                </figure>
+            </d-figure>
+
+        </div>
+
+        <div id="experiment-results" class="sub-section">
+            <h1 class="text">Experiment Results</h1>
+        
+            <p class="text">
+                <strong>Performance-Efficiency Comparison on the Minecraft Interaction Benchmark.</strong>
+                We demonstrate that <strong>ROCKET-2</strong> significantly improves inference speed while maintaining high
+                interaction success. Following <d-cite key="cai2024rocket"></d-cite>, we evaluate the agent's performance on the <i>Minecraft Interaction Benchmark</i>.
+            </p>
+            <d-figure id="fig-results">
+                <figure>
+                    <img data-zoomable="" draggable="false" src="static/img/result.png" alt="exp1">
+                    <figcaption>
+                        <strong>Figure 3. Performance-Efficiency Comparison on the Minecraft Interaction Benchmark.</strong> The x-axis represents inference speed (FPS), and the y-axis shows the interaction success rate. Numbers in parentheses
+                        indicate the Molmo invocation interval, where larger values mean higher FPS. “+ track” denotes real-time
+                        SAM-2 segmentation between Molmo calls, increasing inference time (applicable only to ROCKET-1). In most
+                        cases, <b>ROCKET-2</b> achieves 3x to 6x faster while matching or surpassing ROCKET-1’s peak performance.
+                    </figcaption>
+                </figure>
+            </d-figure>
+
+            <p class="text">
+                <strong>Case Study of Human-Agent Interaction.</strong>
+                We present two case studies illustrating ROCKET-2 interprets human intent under
+                the cross-view goal specification interface.
+            </p>
+            <d-figure id="fig-results">
+                <figure>
+                    <img data-zoomable="" draggable="false" src="static/img/human-agent.png" alt="exp2">
+                    <figcaption>
+                        <strong>Figure 4. Case Study of Human-Agent Interaction.</strong>
+                        We demonstrate how a human interacts with <b>ROCKET-2</b>,
+                        leveraging its spatial reasoning abilities. (Top Row) The human specifies a hay bale that is not visible
+                        to <b>ROCKET-2</b>. By exploring the area around the visible landmark (house), <b>ROCKET-2</b> successfully locates
+                        the goal. (Bottom Row) The human specifies a target tree in the presence of a tree distractor. <b>ROCKET-2</b>
+                        accurately identifies the correct tree by reasoning about spatial relationships and landmarks. The agent’s
+                        trajectories are visualized in bird’s-eye view maps.
+                    </figcaption>
+                </figure>
+            </d-figure>
+
+            <p class="text">
+                <strong>Visualization Analysis of Cross-View Alignment.</strong>
+                Prominent non-goal objects, referred to as “landmarks”, play a crucial role in assisting humans or
+                agents in localizing goal objects within a scene.
+                We prepare a current view observation and a third view with goal segmentation and inspect the softmax-normalized attention map of the first self-attention layer in the
+                spatial transformer.
+                This map is overlaid on the third
+                view (goal view) to reflect its responsiveness to
+                patch \(i\) in the current view.
+                Our findings reveal that ROCKET-2 effectively matches
+                cross-view consistency even under significant geometric deformations and distance variations.
+            </p>
+            <d-figure id="fig-results">
+                <figure>
+                    <img data-zoomable="" draggable="false" src="static/img/attention.png" alt="exp3">
+                    <figcaption>
+                        <strong>Figure 5. Visualization Analysis of Cross-View Alignment.</strong>
+                        The vision patches (identified by white grid) represent a chosen background landmark in the agent’s current view
+                        (instead of the goal object). We generated an attention map with the <i>spatial fusion transformer</i> using these
+                        patches as queries and the goal view patches as keys and values. We found that <b>ROCKET-2</b> perfectly aligned with
+                        the selected landmarks across views.
+                    </figcaption>
+                </figure>
+            </d-figure>
+
+        <p class="text">
+            <strong>Cross-Episode Generalization.</strong>
+            We observe that ROCKET-2 exhibits crossepisode generalization capabilities.
+            As shown in <a href="#fig-nonhomologous">Figure 6</a>, he selected goal views come from different episodes, each generated with a unique
+            world seed.
+        </p>
+        <d-figure id="fig-nonhomologous">
+            <figure>
+                <div style="text-align: center;">
+                <img data-zoomable="" draggable="false" src="static/img/non-homologous.png" alt="exp4"  style="width: 50%; height: auto;">
+                </div>
+                <figcaption>
+                    <strong>Figure 6. Cross-Episode Generalization.</strong>
+                    The goal view does not exist within the agent’s world but originates from a different episode. We observe that the
+                    agent attempts to infer the semantic information underlying the goal specification.
+                </figcaption>
+            </figure>
+        </d-figure>
+
+        </div>
+
+        <div id="conclusion" style="position: relative; margin-top: 40px; margin-bottom: 0px;">
+            <h2 class="text" style="margin-top:0px; margin-bottom:10px">Conclusion</h2>
+            <p class="text">
+                To improve human-agent interaction in embodied worlds, we propose a cross-view goal specification approach. Since
+                behavior cloning alone
+                fails to align the agent with human views, we
+                introduce cross-view consistency and target visibility losses to enhance alignment. ROCKET2 achieves state-of-the-art
+                performance on the
+                Minecraft Interaction Benchmark with a <b>3x to 6x</b>
+                efficiency boost. Visualizations and case studies validate our method.
+            </p>
+        </div>
+
+        </d-article>
+        <d-appendix>
+            <h3>BibTeX</h3>
+            <p class="bibtex">
+                @misc{cai2025rocket2,<br>
+                &nbsp;&nbsp;title={ROCKET-2: Steering Visuomotor Policy via Cross-View Goal Alignment},<br>
+                &nbsp;&nbsp;author={Shaofei Cai and Zhancun Mu and Anji Liu and Yitao Liang},<br>
+                &nbsp;&nbsp;year={2025},<br>
+                &nbsp;&nbsp;eprint={2503.02505},<br>
+                &nbsp;&nbsp;archivePrefix={arXiv},<br>
+                &nbsp;&nbsp;primaryClass={cs.AI},<br>
+                &nbsp;&nbsp;url={https://arxiv.org/abs/2503.02505},<br>
+                }
+            </p>
+
+            <d-footnote-list></d-footnote-list>
+            <d-citation-list></d-citation-list>
+        </d-appendix>
+        <!-- bibliography will be inlined during Distill pipeline's pre-rendering -->
+        <d-bibliography src="bibliography.bib"></d-bibliography>
+        <script src="./static/js/nav-bar.js"></script>
+    </body>
+</html>
