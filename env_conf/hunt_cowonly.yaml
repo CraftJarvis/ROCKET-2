@@ -1,0 +1,48 @@
+
+spawn_positions:
+  - 
+    seed: 19961103
+    position: [-373, 64, 830]
+  - 
+    seed: 19961103
+    position: [-232, 67, 887]
+  - 
+    seed: 19961103
+    position: [-160, 65, 900]
+
+
+custom_init_commands: 
+  - /fill ~-4 ~ ~-4 ~4 ~1 ~-4 minecraft:acacia_fence
+  - /fill ~-4 ~ ~4 ~4 ~1 ~4 minecraft:acacia_fence
+  - /fill ~-4 ~ ~-4 ~-4 ~1 ~4 minecraft:acacia_fence
+  - /fill ~4 ~ ~-4 ~4 ~1 ~4 minecraft:acacia_fence
+
+summon_mobs: 
+  - 
+    mob_name: sheep
+    range_x: [-3, -3]
+    range_z: [-3, 3]
+    number: 2
+  - 
+    mob_name: cow
+    range_x: [3, 3]
+    range_z: [-3, 3]
+    number: 2
+
+init_inventory: 
+  -
+    slot: 0
+    type: diamond_sword
+    quantity: 1
+
+# masked_actions: 
+#   inventory: 0
+#   hotbar.1: 0
+#   hotbar.2: 0
+#   hotbar.3: 0
+#   hotbar.4: 0
+#   hotbar.5: 0
+#   hotbar.6: 0
+#   hotbar.7: 0
+#   hotbar.8: 0
+#   hotbar.9: 0

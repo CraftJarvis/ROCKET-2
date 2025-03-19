@@ -1,0 +1,32 @@
+
+spawn_positions:
+  - 
+    seed: 19961103
+    position: [-129, 72, -1490]
+
+init_inventory: 
+  -
+    slot: 0
+    type: oak_planks
+    quantity: 64
+  -
+    slot: 1
+    type: stick
+    quantity: 64
+  - 
+    slot: 2
+    type: cobblestone
+    quantity: 64
+
+
+
+masked_actions: 
+  hotbar.1: 0
+  hotbar.2: 0
+  hotbar.3: 0
+  hotbar.4: 0
+  hotbar.5: 0
+  hotbar.6: 0
+  hotbar.7: 0
+  hotbar.8: 0
+  hotbar.9: 0

@@ -1,0 +1,14 @@
+
+spawn_positions:
+  - 
+    seed: 19961103
+    position: [634, 15, 380]
+
+custom_init_commands:
+  - /effect give @a night_vision 99999 250 true
+
+init_inventory: 
+  -
+    slot: 0 
+    type: diamond_pickaxe
+    quantity: 1

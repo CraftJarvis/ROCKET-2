@@ -1,0 +1,10 @@
+spawn_positions:
+  - 
+    seed: 19961103
+    position: [-923.5, 78, 766.5]
+
+init_inventory: 
+  -
+    slot: 0 
+    type: diamond_pickaxe
+    quantity: 1

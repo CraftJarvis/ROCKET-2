@@ -1,0 +1,47 @@
+hydra:
+  run:
+    dir: ${oc.env:MINESTUDIO_SAVE_DIR}/${now:%Y-%m-%d}/${now:%H-%M-%S}
+
+hydra/job_logging: colorlog
+hydra/hydra_logging: colorlog
+
+dataset_dirs: 
+  - '/nfs-shared-2/data/contractors-new/dataset_6xx'
+  - '/nfs-shared-2/data/contractors-new/dataset_7xx'
+  - '/nfs-shared-2/data/contractors-new/dataset_8xx'
+  - '/nfs-shared-2/data/contractors-new/dataset_9xx'
+  - '/nfs-shared-2/data/contractors-new/dataset_10xx'
+
+batch_size: 4
+num_workers: 6
+prefetch_factor: 4
+split_ratio: 0.90
+devices: 8
+learning_rate: 0.00004
+weight_decay: 0.001
+warmup_steps: 2000
+save_freq: 10000
+ckpt_path: null
+objective_weight: 0.01
+shuffle_episodes: True
+episode_continuous_batch: False
+accumulate_grad_batches: 1
+
+model:
+  # backbone: 'timm/efficientnet_b0.ra_in1k'
+  view_backbone: 'timm/vit_base_patch16_224.dino'
+  # view_backbone: 'timm/vit_small_patch16_224.dino'
+  mask_backbone: 'timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k'
+  hiddim: 1024
+  num_heads: 8
+  num_layers: 4
+  timesteps: 128
+  mem_len: 128
+  use_prev_action: True
+  num_view_tokens: 9
+
+ema:
+  decay: 0.999
+  validate_original_weights: True
+  every_n_steps: 8
+  cpu_offload: False

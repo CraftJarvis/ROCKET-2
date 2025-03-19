@@ -1,0 +1,27 @@
+
+spawn_positions:
+  - 
+    seed: 19961103
+    position: [-373, 64, 830]
+  - 
+    seed: 19961103
+    position: [-232, 67, 887]
+  - 
+    seed: 19961103
+    position: [-160, 65, 900]
+
+custom_init_commands:
+  - /setblock ~-3 ~0 ~4 minecraft:rail
+  - /setblock ~-2 ~0 ~4 minecraft:rail
+  - /setblock ~-1 ~0 ~4 minecraft:rail
+  - /setblock ~0 ~0 ~4 minecraft:rail
+  - /setblock ~1 ~0 ~4 minecraft:rail
+  - /setblock ~2 ~0 ~4 minecraft:rail
+  - /setblock ~3 ~0 ~4 minecraft:rail
+
+init_inventory: 
+  -
+    slot: 0 
+    type: minecart
+    quantity: 1
+

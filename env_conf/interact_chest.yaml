@@ -1,0 +1,29 @@
+
+spawn_positions:
+  - 
+    seed: 19961103
+    position: [-373, 64, 830]
+  - 
+    seed: 19961103
+    position: [-232, 67, 887]
+  - 
+    seed: 19961103
+    position: [-160, 65, 900]
+
+
+custom_init_commands:
+  - /setblock ~-2 ~ ~5 minecraft:chest[facing=north]
+  - /setblock ~0 ~ ~5 minecraft:chest[facing=north]
+  - /setblock ~2 ~ ~5 minecraft:chest[facing=north]
+
+# masked_actions: 
+#   inventory: 0
+#   hotbar.1: 0
+#   hotbar.2: 0
+#   hotbar.3: 0
+#   hotbar.4: 0
+#   hotbar.5: 0
+#   hotbar.6: 0
+#   hotbar.7: 0
+#   hotbar.8: 0
+#   hotbar.9: 0
