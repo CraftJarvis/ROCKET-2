@@ -1,7 +1,7 @@
 '''
 Date: 2025-03-18 20:04:14
 LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-03-21 12:43:18
+LastEditTime: 2025-03-21 14:27:01
 FilePath: /ROCKET2-OSS/launch.py
 '''
 import os
@@ -68,12 +68,19 @@ DEFAULT_CODE = """
 spawn_positions:
   - 
     seed: 19961103
-    position: [-129, 72, -1490]
+    position: [-79, 64, -512]
+  - 
+    seed: 19961103
+    position: [-145, 67, -495]
+  - 
+    seed: 19961103
+    position: [-312, 69, -509]
 
-custom_init_commands:   
-  - /setblock ~2 ~0 ~4 minecraft:coal_block
-  - /setblock ~0 ~0 ~4 minecraft:diamond_block
-  - /setblock ~-2 ~0 ~4 minecraft:stone
+init_inventory: 
+  -
+    slot: 0
+    type: iron_axe
+    quantity: 1
 
 masked_actions: 
   hotbar.1: 0
@@ -109,10 +116,9 @@ def apply_two_images(bg_image, fg_image):
 
 class CrossViewRocketSession:
     
-    def __init__(self, model_path: str, sam_path: str):
+    def __init__(self, sam_path: str):
         start_image = np.zeros((360, 640, 3), dtype=np.uint8)
         self.current_image = np.array(start_image)
-        self.model_path = model_path
         self.sam_path = sam_path
         self.clear_points()
         
@@ -160,6 +166,17 @@ class CrossViewRocketSession:
         print(f"Successfully loaded SAM2 from {sam_ckpt}")
         self.able_to_track = False
 
+    def load_rocket(self, ckpt_path, cfg_coef=1.0):
+        if ckpt_path.startswith("hf:"):
+            ckpt_path = ckpt_path.split(":")[-1]
+            agent = CrossViewRocket.from_pretrained(ckpt_path).to("cuda")
+        else:
+            assert os.path.exists(ckpt_path), f"Model path {ckpt_path} not found."
+            agent = load_cross_view_rocket(ckpt_path).to("cuda")
+        agent.eval()
+        self.agent = CFGWrapper(agent, k=cfg_coef)
+        self.clear_agent_memory()
+
     def segment(self):
         self.predictor.load_first_frame(self.cross_view_image)
         _, out_obj_ids, out_mask_logits = self.predictor.add_new_prompt(
@@ -186,17 +203,7 @@ class CrossViewRocketSession:
             time.sleep(0.1)
             noop_action = self.env.noop_action()
             self.obs, self.reward, terminated, truncated, self.info = self.env.step(noop_action)
-        
         self.reward = 0
-        if self.model_path.startswith("hf:"):
-            model_path = self.model_path.split(":")[-1]
-            agent = CrossViewRocket.from_pretrained(model_path).to("cuda")
-        else:
-            assert os.path.exists(self.model_path), f"Model path {self.model_path} not found."
-            agent = load_cross_view_rocket(self.model_path).to("cuda")
-        agent.eval()
-        self.agent = CFGWrapper(agent, k=0.5)
-        self.clear_agent_memory()
         self.current_image = self.info["pov"]
         # save_image = np.concatenate([self.current_image, self.current_image], axis=0)
         self.obs_history.append(self.current_image)
@@ -325,7 +332,7 @@ def draw_components(args):
         # with gr.Row(elem_id="custom-container"):
         #     upload_button = gr.UploadButton(label="Upload Cross-View Image", file_types=["image"])
         
-        rocket_session = gr.State(CrossViewRocketSession(model_path=args.model_path, sam_path=args.sam_path))
+        rocket_session = gr.State(CrossViewRocketSession(sam_path=args.sam_path))
         
         with gr.Row(elem_id="custom-container"):
 
@@ -343,8 +350,11 @@ def draw_components(args):
                     with gr.Row(equal_height=True):
                         env_files = [x for x in Path(args.env_conf).glob("*.yaml")]
                         # prompt = gr.Textbox(value="Config List", show_label=False, interactive=False, scale=1)
+                        choices = sorted([str(x) for x in env_files])
+                        default = [x for x in choices if 'wood' in x][0]
                         conf_source = gr.Dropdown(
-                            choices=[str(x) for x in env_files],
+                            value=default, 
+                            choices=choices,
                             show_label=False, interactive=True, scale=4
                         )
                         load_conf_btn = gr.Button("Load", scale=1)
@@ -367,26 +377,46 @@ def draw_components(args):
                         width=PAGE_WIDTH
                     )
 
-                    with gr.Row(equal_height=True):
-                        with gr.Column(scale=3):
-                            command = gr.Dropdown(
-                                choices=[
-                                    '/setblock ~0 ~0 ~4 minecraft:diamond_block', 
-                                ],
-                                show_label=False, interactive=True, allow_custom_value=True
-                            )
-                        with gr.Column(scale=1):
-                            send_cmd_btn = gr.Button("Send Command", scale=1)
+                    with gr.Tabs():
 
-                    with gr.Row(equal_height=True):
-                        reset_btn = gr.Button("Reset", scale=1)
-                        clr_mem_btn = gr.Button("Clear Memory", scale=1)
-                        steps = gr.Number(
-                            value=30, minimum=1, maximum=1200,
-                            show_label=False, interactive=True, scale=1
-                        )
-                        launch_btn = gr.Button("Go", variant="primary", interactive=False, scale=1)
-                        
+                        with gr.TabItem("Control Panel"):
+                            with gr.Row(equal_height=True):
+                                reset_btn = gr.Button("Reset", scale=1)
+                                clr_mem_btn = gr.Button("Clear Memory", scale=1)
+                                steps = gr.Number(
+                                    value=30, minimum=1, maximum=1200,
+                                    show_label=False, interactive=True, scale=1
+                                )
+                                launch_btn = gr.Button("Go", variant="primary", interactive=False, scale=1)
+
+                        with gr.TabItem("Commands Panel"):
+                            with gr.Row(equal_height=True):
+                                with gr.Column(scale=4):
+                                    command = gr.Dropdown(
+                                        choices=[
+                                            '/setblock ~0 ~0 ~4 minecraft:diamond_block', 
+                                        ],
+                                        show_label=False, interactive=True, allow_custom_value=True
+                                    )
+                                with gr.Column(scale=1):
+                                    send_cmd_btn = gr.Button("Send Command", scale=1)
+
+                        with gr.TabItem("Setting Panel"):
+                            with gr.Row(equal_height=True):
+                                ckpt_path = gr.Dropdown(
+                                    label="Chekpoint Path",
+                                    choices=[
+                                        "hf:phython96/ROCKET-2-1.5x-17w", 
+                                        "hf:phython96/ROCKET-2-1x-22w", 
+                                    ], 
+                                    show_label=True, interactive=True, allow_custom_value=True, scale=4
+                                )
+                                cfg_coef = gr.Number(
+                                    label="Classifier-Free", 
+                                    value=1.5, minimum=0.0, maximum=10.0, step=0.1,
+                                    show_label=True, interactive=True, scale=1
+                                )
+                                set_rocket_btn = gr.Button("Set", scale=1)
 
                 with gr.TabItem("Specify Goal"):
                     
@@ -460,13 +490,21 @@ def draw_components(args):
             set_conf_btn.click(set_conf_btn_fn, inputs=[config_code, rocket_session], outputs=[set_status])
             
             # process: reset
-            def reset_btn_fn(rocket_session):
+            def reset_btn_fn(ckpt_path, cfg_coef, rocket_session):
                 if rocket_session.env_conf is None:
-                    return start_image, "Please set environment config first.", None, gr.update(interactive=False)
+                    return start_image, gr.update(), "Please set environment config first.", None, gr.update(interactive=False)
+                rocket_session.load_rocket(ckpt_path, cfg_coef)
                 image = rocket_session.reset()
+                rocket_session.cross_view_image = image
                 cross_view_slider = gr.update(value=0, maximum=len(rocket_session.obs_history)-1, interactive=True)
-                return image, "Environment Reset Successfully.", cross_view_slider, gr.update(interactive=True)
-            reset_btn.click(reset_btn_fn, inputs=[rocket_session], outputs=[display, status, cross_view_slider, launch_btn])
+                return image, image, "Environment Reset Successfully.", cross_view_slider, gr.update(interactive=True)
+            reset_btn.click(reset_btn_fn, inputs=[ckpt_path, cfg_coef, rocket_session], outputs=[display, cross_view_display, status, cross_view_slider, launch_btn])
+            
+            # process: set checkpoint
+            def set_rocket_btn_fn(ckpt_path, cfg_coef, rocket_session):
+                rocket_session.load_rocket(ckpt_path, cfg_coef)
+                return f"Rocket Model with ckpt {ckpt_path}, CFG {cfg_coef};"
+            set_rocket_btn.click(set_rocket_btn_fn, inputs=[ckpt_path, cfg_coef, rocket_session], outputs=[status])
             
             # process: upload cross-view image
             def upload_image_fn(image_file, rocket_session):
@@ -598,7 +636,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--port", type=int, default=7860)
     parser.add_argument("--env-conf", type=str, default=None)
-    parser.add_argument("--model-path", type=str)
     parser.add_argument("--sam-path", type=str)
     args = parser.parse_args()
     draw_components(args)

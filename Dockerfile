@@ -39,18 +39,21 @@ RUN git clone https://github.com/CraftJarvis/MineStudio.git &&\
     cd MineStudio/minestudio/utils/realtime_sam &&\
     python -m pip install --no-build-isolation -e . -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-ENV http_proxy=http://172.17.40.11:7890
-ENV https_proxy=http://172.17.40.11:7890
+ARG http_proxy=http://172.17.40.11:7890
+ARG https_proxy=http://172.17.40.11:7890
 
 WORKDIR /app
 RUN cd MineStudio/minestudio/utils/realtime_sam/checkpoints &&\
     bash download_ckpts.sh
 
-ENV GRADIO_SERVER_NAME="0.0.0.0"
 ARG HF_ENDPOINT="https://hf-mirror.com"
-RUN python -m pip install gradio==5.9.0 pillow==11.0.0 &&\
+RUN python -m pip install gradio==5.9.1 pillow==11.0.0 &&\
     git clone https://github.com/CraftJarvis/ROCKET-2.git &&\
     cd ROCKET-2 &&\
     python model.py
 
-CMD ["python", "/app/ROCKET-2/launch.py", "--env-conf", "/app/ROCKET-2/env_conf", "--sam-path", "/app/MineStudio/minestudio/utils/realtime_sam/checkpoints", "--model-path", "hf:phython96/ROCKET-2-1.5x-17w"]
+WORKDIR /app
+RUN mkdir minestudio_temp_dir 
+ENV MINESTUDIO_TEMP_DIR="/app/minestudio_temp_dir"
+
+CMD ["python", "/app/ROCKET-2/launch.py", "--env-conf", "/app/ROCKET-2/env_conf", "--sam-path", "/app/MineStudio/minestudio/utils/realtime_sam/checkpoints"]
