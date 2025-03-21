@@ -30,30 +30,28 @@ RUN python -m pip uninstall opencv -y &&\
     python -m pip install minestudio==1.1.2 -i https://pypi.tuna.tsinghua.edu.cn/simple &&\
     python -m pip install opencv-python==4.8.0.74 opencv-python-headless==4.8.0.74 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-ENV HF_ENDPOINT=https://hf-mirror.com
-RUN python -m minestudio.simulator.entry -y
-
-
-WORKDIR /app
-RUN git clone https://github.com/CraftJarvis/MineStudio.git &&\
-    cd MineStudio/minestudio/utils/realtime_sam &&\
-    python -m pip install --no-build-isolation -e . -i https://pypi.tuna.tsinghua.edu.cn/simple
+USER root
 
 ARG http_proxy=http://172.17.40.11:7890
 ARG https_proxy=http://172.17.40.11:7890
+ARG HF_ENDPOINT="https://hf-mirror.com"
 
 WORKDIR /app
-RUN cd MineStudio/minestudio/utils/realtime_sam/checkpoints &&\
+RUN mkdir /.cache && mkdir /app/minestudio_temp_dir 
+ENV MINESTUDIO_TEMP_DIR="/app/minestudio_temp_dir"
+RUN python -m minestudio.simulator.entry -y
+
+RUN git clone https://github.com/CraftJarvis/MineStudio.git &&\
+    cd MineStudio/minestudio/utils/realtime_sam &&\
+    python -m pip install --no-build-isolation -e . -i https://pypi.tuna.tsinghua.edu.cn/simple &&\
+    cd checkpoints &&\
     bash download_ckpts.sh
 
-ARG HF_ENDPOINT="https://hf-mirror.com"
 RUN python -m pip install gradio==5.9.1 pillow==11.0.0 &&\
     git clone https://github.com/CraftJarvis/ROCKET-2.git &&\
     cd ROCKET-2 &&\
     python model.py
 
-WORKDIR /app
-RUN mkdir minestudio_temp_dir 
-ENV MINESTUDIO_TEMP_DIR="/app/minestudio_temp_dir"
+WORKDIR /app/ROCKET-2
 
-CMD ["python", "ROCKET-2/launch.py", "--env-conf", "/app/ROCKET-2/env_conf", "--sam-path", "/app/MineStudio/minestudio/utils/realtime_sam/checkpoints"]
+CMD ["python", "launch.py", "--env-conf", "./env_conf", "--sam-path", "/app/MineStudio/minestudio/utils/realtime_sam/checkpoints"]
