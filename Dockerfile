@@ -47,11 +47,10 @@ RUN cd MineStudio/minestudio/utils/realtime_sam/checkpoints &&\
     bash download_ckpts.sh
 
 WORKDIR /app
+ARG HF_ENDPOINT="https://hf-mirror.com"
 RUN python -m pip install gradio==5.9.1 pillow==11.0.0 &&\
     git clone https://github.com/CraftJarvis/ROCKET-2.git &&\
     cd ROCKET-2 &&\
     python model.py
-
-ARG HF_ENDPOINT="https://hf-mirror.com"
 
 CMD ["python", "/app/ROCKET-2/launch.py", "--env-conf", "/app/ROCKET-2/env_conf", "--sam-path", "/app/MineStudio/minestudio/utils/realtime_sam/checkpoints", "--model-path", "hf:phython96/ROCKET-2-1.5x-17w"]

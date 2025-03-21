@@ -1,7 +1,7 @@
 '''
 Date: 2025-03-18 20:04:14
 LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-03-19 20:53:08
+LastEditTime: 2025-03-21 12:25:00
 FilePath: /ROCKET2-OSS/launch.py
 '''
 import os
@@ -190,7 +190,7 @@ class CrossViewRocketSession:
         self.reward = 0
         if self.model_path.startswith("hf:"):
             model_path = self.model_path.split(":")[-1]
-            agent = CrossViewRocket.from_pretrained(model_path)
+            agent = CrossViewRocket.from_pretrained(model_path).to("cuda")
         else:
             assert os.path.exists(self.model_path), f"Model path {self.model_path} not found."
             agent = load_cross_view_rocket(self.model_path).to("cuda")
