@@ -627,7 +627,7 @@ def draw_components(args):
                 video.release()
                 rocket_session.image_history = []
                 return gr.update(interactive=False), gr.update(value=filepath, interactive=True), filepath
-            make_video_btn.click(make_video_fn, inputs=[rocket_session,], outputs=[make_video_btn, download_btn, record_video], show_progress=True)
+            make_video_btn.click(make_video_fn, inputs=[rocket_session], outputs=[make_video_btn, download_btn, record_video], show_progress=True)
             
             # process: download
             def save_video_fn():
