@@ -32,8 +32,8 @@ RUN python -m pip uninstall opencv -y &&\
 
 USER root
 
-ARG http_proxy=http://172.17.40.11:7890
-ARG https_proxy=http://172.17.40.11:7890
+# ARG http_proxy=http://172.17.40.11:7890
+# ARG https_proxy=http://172.17.40.11:7890
 ARG HF_ENDPOINT="https://hf-mirror.com"
 
 WORKDIR /app
