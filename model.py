@@ -1,7 +1,7 @@
 '''
 Date: 2025-03-19 20:24:46
 LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-03-19 20:27:55
+LastEditTime: 2025-03-21 12:06:55
 FilePath: /ROCKET2-OSS/model.py
 '''
 
@@ -14,6 +14,7 @@ from typing import List, Dict, Any, Tuple, Optional
 from rich import print
 
 import timm
+from huggingface_hub import PyTorchModelHubMixin
 from minestudio.models.base_policy import MinePolicy
 from minestudio.utils.vpt_lib.util import FanInInitReLULayer, ResidualRecurrentBlocks
 from minestudio.utils.register import Registers
@@ -38,7 +39,7 @@ class ActionEmbeddingLayer(nn.Module):
             x += self.binary_layers[f"act_{key}"](action[key.replace("_", ".")])
         return x
 
-class CrossViewRocket(MinePolicy):
+class CrossViewRocket(MinePolicy, PyTorchModelHubMixin):
     
     def __init__(self, 
         view_backbone: str = 'timm/vit_base_patch16_224.dino', 
@@ -220,46 +221,51 @@ def load_cross_view_rocket(ckpt_path: Optional[str] = None):
     return model
 
 if __name__ == '__main__':
-    model = CrossViewRocket(
-        # view_backbone='timm/vit_base_patch16_224.dino', 
-        view_backbone='timm/vit_small_patch16_224.dino', 
-        mask_backbone='timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k', 
-        hiddim=1024, 
-        num_layers=4,
-        num_view_tokens=1, 
-    ).to("cuda")
-    num_params = sum(p.numel() for p in model.parameters())
-    print(f"Params (MB): {num_params / 1e6 :.2f}")
+    # model = CrossViewRocket(
+    #     # view_backbone='timm/vit_base_patch16_224.dino', 
+    #     view_backbone='timm/vit_small_patch16_224.dino', 
+    #     mask_backbone='timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k', 
+    #     hiddim=1024, 
+    #     num_layers=4,
+    #     num_view_tokens=1, 
+    # ).to("cuda")
+    # num_params = sum(p.numel() for p in model.parameters())
+    # print(f"Params (MB): {num_params / 1e6 :.2f}")
     
-    for key in ["view_backbone", "mask_backbone", "view_resampler", "interaction", "recurrent", "lastlayer", "final_ln"]:
-        num_params = sum(p.numel() for p in getattr(model, key).parameters())
-        print(f"{key} Params (MB): {num_params / 1e6 :.2f}")
+    # for key in ["view_backbone", "mask_backbone", "view_resampler", "interaction", "recurrent", "lastlayer", "final_ln"]:
+    #     num_params = sum(p.numel() for p in getattr(model, key).parameters())
+    #     print(f"{key} Params (MB): {num_params / 1e6 :.2f}")
 
-    print("Debug Training mode: True")
-    output, memory = model(
-        input={
-            'image': torch.zeros(1, 64, 224, 224, 3).to("cuda"), 
-            'segmentation': {
-                'point': torch.zeros(1, 64, 2).to("cuda"),
-                'bbox': torch.zeros(1, 64, 4).to("cuda"),
-            }, 
-            'cross_view': {
-                'cross_view_image': torch.zeros(1, 64, 224, 224, 3).to("cuda"),
-                'cross_view_obj_id': torch.zeros(1, 64, dtype=torch.long).to("cuda"),
-                'cross_view_obj_mask': torch.zeros(1, 64, 224, 224).to("cuda"),
-            }
-        }
-    )
-    print("Debug Infering mode: True")
-    model.eval()
-    output, memory = model(
-        input={
-            'image': torch.zeros(1, 1, 224, 224, 3).to("cuda"), 
-            'cross_view': {
-                'cross_view_image': torch.zeros(1, 1, 224, 224, 3).to("cuda"),
-                'cross_view_obj_id': torch.zeros(1, 1, dtype=torch.long).to("cuda"),
-                'cross_view_obj_mask': torch.zeros(1, 1, 224, 224).to("cuda"),
-            }
-        }
-    )
-    print(output.keys())
+    # print("Debug Training mode: True")
+    # output, memory = model(
+    #     input={
+    #         'image': torch.zeros(1, 64, 224, 224, 3).to("cuda"), 
+    #         'segmentation': {
+    #             'point': torch.zeros(1, 64, 2).to("cuda"),
+    #             'bbox': torch.zeros(1, 64, 4).to("cuda"),
+    #         }, 
+    #         'cross_view': {
+    #             'cross_view_image': torch.zeros(1, 64, 224, 224, 3).to("cuda"),
+    #             'cross_view_obj_id': torch.zeros(1, 64, dtype=torch.long).to("cuda"),
+    #             'cross_view_obj_mask': torch.zeros(1, 64, 224, 224).to("cuda"),
+    #         }
+    #     }
+    # )
+    # print("Debug Infering mode: True")
+    # model.eval()
+    # output, memory = model(
+    #     input={
+    #         'image': torch.zeros(1, 1, 224, 224, 3).to("cuda"), 
+    #         'cross_view': {
+    #             'cross_view_image': torch.zeros(1, 1, 224, 224, 3).to("cuda"),
+    #             'cross_view_obj_id': torch.zeros(1, 1, dtype=torch.long).to("cuda"),
+    #             'cross_view_obj_mask': torch.zeros(1, 1, 224, 224).to("cuda"),
+    #         }
+    #     }
+    # )
+    # print(output.keys())
+    
+    agent_1x = CrossViewRocket.from_pretrained("phython96/ROCKET-2-1x-22w")
+    agent_1_5x = CrossViewRocket.from_pretrained("phython96/ROCKET-2-1.5x-17w")
+    # agent = load_cross_view_rocket("/nfs-shared/shaofei/minestudio/save/2025-03-06/11-50-16/weights/weight-epoch=6-step=220000.ckpt")
+    # agent.push_to_hub("phython96/ROCKET-2-1x-22w")

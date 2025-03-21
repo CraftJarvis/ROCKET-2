@@ -1,8 +1,8 @@
 '''
 Date: 2025-03-18 20:04:14
 LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-03-19 19:28:45
-FilePath: /ROCKET-2/var/launch.py
+LastEditTime: 2025-03-19 20:53:08
+FilePath: /ROCKET2-OSS/launch.py
 '''
 import os
 import cv2
@@ -70,7 +70,7 @@ spawn_positions:
     seed: 19961103
     position: [-129, 72, -1490]
 
-custom_init_commands:
+custom_init_commands:   
   - /setblock ~2 ~0 ~4 minecraft:coal_block
   - /setblock ~0 ~0 ~4 minecraft:diamond_block
   - /setblock ~-2 ~0 ~4 minecraft:stone
@@ -188,8 +188,12 @@ class CrossViewRocketSession:
             self.obs, self.reward, terminated, truncated, self.info = self.env.step(noop_action)
         
         self.reward = 0
-        assert os.path.exists(self.model_path), f"Model path {self.model_path} not found."
-        agent = load_cross_view_rocket(self.model_path).to("cuda")
+        if self.model_path.startswith("hf:"):
+            model_path = self.model_path.split(":")[-1]
+            agent = CrossViewRocket.from_pretrained(model_path)
+        else:
+            assert os.path.exists(self.model_path), f"Model path {self.model_path} not found."
+            agent = load_cross_view_rocket(self.model_path).to("cuda")
         agent.eval()
         self.agent = CFGWrapper(agent, k=0.5)
         self.clear_agent_memory()
