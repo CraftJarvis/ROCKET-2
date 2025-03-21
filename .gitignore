@@ -182,4 +182,3 @@ minestudio/models/realtime_sam/checkpoints/*.pt
 outputs
 *.mp4
 *.ttf
-*.png

@@ -46,7 +46,7 @@ WORKDIR /app
 RUN cd MineStudio/minestudio/utils/realtime_sam/checkpoints &&\
     bash download_ckpts.sh
 
-WORKDIR /app
+ENV GRADIO_SERVER_NAME="0.0.0.0"
 ARG HF_ENDPOINT="https://hf-mirror.com"
 RUN python -m pip install gradio==5.9.0 pillow==11.0.0 &&\
     git clone https://github.com/CraftJarvis/ROCKET-2.git &&\
