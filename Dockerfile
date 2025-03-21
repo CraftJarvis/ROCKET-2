@@ -56,4 +56,4 @@ WORKDIR /app
 RUN mkdir minestudio_temp_dir 
 ENV MINESTUDIO_TEMP_DIR="/app/minestudio_temp_dir"
 
-CMD ["python", "/app/ROCKET-2/launch.py", "--env-conf", "/app/ROCKET-2/env_conf", "--sam-path", "/app/MineStudio/minestudio/utils/realtime_sam/checkpoints"]
+CMD ["python", "ROCKET-2/launch.py", "--env-conf", "/app/ROCKET-2/env_conf", "--sam-path", "/app/MineStudio/minestudio/utils/realtime_sam/checkpoints"]

@@ -1,13 +1,14 @@
 '''
 Date: 2025-03-18 20:04:14
 LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-03-21 14:27:01
+LastEditTime: 2025-03-21 14:54:53
 FilePath: /ROCKET2-OSS/launch.py
 '''
 import os
 import cv2
 import time
 import yaml
+import json
 import torch
 import requests
 import gradio as gr
@@ -305,7 +306,11 @@ class CrossViewRocketSession:
 
 def draw_components(args):
 
-    with gr.Blocks(theme="shivi/calm_seafoam", css=custom_css) as demo:
+    with open("theme.json", "r") as f:
+        theme_data = json.load(f)
+    theme = gr.Theme.from_dict(theme_data)
+
+    with gr.Blocks(theme=theme, css=custom_css) as demo:
         links = gr.HTML(
             '''
             <div align="center">
