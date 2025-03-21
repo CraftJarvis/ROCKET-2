@@ -1,7 +1,7 @@
 '''
 Date: 2025-03-18 20:04:14
 LastEditors: caishaofei-mus1 1744260356@qq.com
-LastEditTime: 2025-03-21 12:25:00
+LastEditTime: 2025-03-21 12:41:45
 FilePath: /ROCKET2-OSS/launch.py
 '''
 import os
@@ -592,11 +592,11 @@ def draw_components(args):
             download_btn.click(save_video_fn, inputs=[], outputs=[make_video_btn, download_btn, record_video], show_progress=False)
 
         demo.queue()
-        demo.launch(share=False,server_port=args.port)
+        demo.launch(share=False, server_address='0.0.0.0', server_port=args.port)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--port", type=int, default=7777)
+    parser.add_argument("--port", type=int, default=7860)
     parser.add_argument("--env-conf", type=str, default=None)
     parser.add_argument("--model-path", type=str)
     parser.add_argument("--sam-path", type=str)

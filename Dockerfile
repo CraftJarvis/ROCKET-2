@@ -48,7 +48,7 @@ RUN cd MineStudio/minestudio/utils/realtime_sam/checkpoints &&\
 
 WORKDIR /app
 ARG HF_ENDPOINT="https://hf-mirror.com"
-RUN python -m pip install gradio==5.9.1 pillow==11.0.0 &&\
+RUN python -m pip install gradio==5.9.0 pillow==11.0.0 &&\
     git clone https://github.com/CraftJarvis/ROCKET-2.git &&\
     cd ROCKET-2 &&\
     python model.py
