@@ -21,7 +21,7 @@ All authors are affiliated with Team **[`CraftJarvis`](https://craftjarvis.githu
 ## Docker
 
 ```sh
-docker built -t rocket2 .
+docker build -t rocket2 .
 docker run -it -p 7860:7860 --platform=linux/amd64 --gpus all rocket2:latest
 ```
 
