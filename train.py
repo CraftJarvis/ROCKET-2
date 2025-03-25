@@ -23,11 +23,6 @@ from minestudio.data.minecraft.callbacks import (
 )
 
 from model import CrossViewRocket
-from model2 import CrossViewRocket2
-from model3 import CrossViewRocket3
-from model4 import CrossViewRocket4
-from model5 import CrossViewRocket5
-from model6 import CrossViewRocket6
 from loss import PointPredictionCallback, PrePointPredictionCallback
 from cross_view_dataset import CrossViewDataModule
 
