@@ -4,7 +4,7 @@
  * @LastEditTime: 2025-03-21 10:32:18
  * @FilePath: /ROCKET2-OSS/README.md
 -->
-# ROCKET-2: Steering Visuomotor Policy via Cross-View Goal Alignment
+<h2 align="center"> ROCKET-2: Steering Visuomotor Policy via Cross-View Goal Alignment </h2>
 
 [`Shaofei Cai`](https://phython96.github.io/) | [`Zhancun Mu`](https://zhancunmu.owlstown.net/) | [`Anji Liu`](https://liuanji.github.io/) | [`Yitao Liang`](https://scholar.google.com/citations?user=KVzR1XEAAAAJ&hl=zh-CN&oi=ao)
 
