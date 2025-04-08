@@ -13,11 +13,8 @@ All authors are affiliated with Team **[`CraftJarvis`](https://craftjarvis.githu
 [[`Project`](https://craftjarvis.github.io/ROCKET-2/)] | [[`Paper`](https://arxiv.org/abs/2503.02505)] | [[`huggingface`]()] | [[`Demo`](https://huggingface.co/spaces/phython96/ROCKET-2-DEMO)] | [[`BibTex`](#citig_rocket)] 
 
 <p align="center">
-  <img src="https://s1.locimg.com/2025/04/08/c9a907224793a.gif" alt="Demo" />
+  <img src="images/comp_4x4_grid.gif" alt="Demo" />
 </p>
-
-![](images/teaser.png)
-
 
 ## Latest updates
 - **03/21/2025 -- We have released the codebase for ROCKET-2!**
