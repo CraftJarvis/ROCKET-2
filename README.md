@@ -13,7 +13,7 @@ All authors are affiliated with Team **[`CraftJarvis`](https://craftjarvis.githu
 [[`Project`](https://craftjarvis.github.io/ROCKET-2/)] | [[`Paper`](https://arxiv.org/abs/2503.02505)] | [[`huggingface`]()] | [[`Demo`](https://huggingface.co/spaces/phython96/ROCKET-2-DEMO)] | [[`BibTex`](#citig_rocket)] 
 
 <p align="center">
-  <img src="images/comp_4x4_grid.gif" alt="Demo" />
+  <img src="images/comp_4x4_grid.gif" alt="Full Width GIF" width="100%" />
 </p>
 
 ## Latest updates
