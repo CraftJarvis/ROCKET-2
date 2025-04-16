@@ -19,13 +19,12 @@ All authors are affiliated with Team **[`CraftJarvis`](https://craftjarvis.githu
   <img src="images/comp_4x4_grid.gif" alt="Full Width GIF" width="100%" />
 </p>
 
-<b> Although ROCKET-2 was only pre-trained on Minecraft, it still shows the ability for zero-shot generalization to other 3D games. </b>
+<b> ROCKET-2 was only pre-trained on Minecraft, but it shows the ability for zero-shot generalization to other 3D games. </b>
 
-<p align="center" width="100%">
-  <img src="images/rocket-unreal.gif" width="33%" />
-  <img src="images/rocket-dmlab.gif" width="33%" />
-  <img src="images/rocket-doom.gif" width="33%" />
+<p align="center">
+  <img src="images/output_grid.gif" alt="Full Width GIF" width="100%" />
 </p>
+
 
 ## Latest updates
 - **03/21/2025 -- We have released the codebase for ROCKET-2!**
