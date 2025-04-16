@@ -14,7 +14,8 @@ All authors are affiliated with Team **[`CraftJarvis`](https://craftjarvis.githu
 
 [[`Project`](https://craftjarvis.github.io/ROCKET-2/)] | [[`Paper`](https://arxiv.org/abs/2503.02505)] | [[`huggingface`]()] | [[`Demo`](https://huggingface.co/spaces/phython96/ROCKET-2-DEMO)] | [[`BibTex`](#citig_rocket)] 
 
-</div>
+<b> ROCKET-2 successfully inflicted damage on the Ender Dragon for the first time and spontaneously developed the ability to build bridges. </b>
+
 <p align="center">
   <img src="images/comp_4x4_grid.gif" alt="Full Width GIF" width="100%" />
 </p>
@@ -24,7 +25,7 @@ All authors are affiliated with Team **[`CraftJarvis`](https://craftjarvis.githu
 <p align="center">
   <img src="images/output_grid.gif" alt="Full Width GIF" width="100%" />
 </p>
-
+</div>
 
 ## Latest updates
 - **03/21/2025 -- We have released the codebase for ROCKET-2!**
