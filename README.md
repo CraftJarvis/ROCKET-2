@@ -19,7 +19,7 @@ All authors are affiliated with Team **[`CraftJarvis`](https://craftjarvis.githu
   <img src="images/comp_4x4_grid.gif" alt="Full Width GIF" width="100%" />
 </p>
 
-<b> ROCKET-2 was only pre-trained on Minecraft, but it shows the ability for zero-shot generalization to other 3D games. </b>
+<b> ROCKET-2 was pre-trained only on Minecraft, yet generalizes zero-shot to other 3D games. </b>
 
 <p align="center">
   <img src="images/output_grid.gif" alt="Full Width GIF" width="100%" />
