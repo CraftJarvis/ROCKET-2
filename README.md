@@ -12,7 +12,11 @@
 
 All authors are affiliated with Team **[`CraftJarvis`](https://craftjarvis.github.io/)**. 
 
-[[`Project`](https://craftjarvis.github.io/ROCKET-2/)] | [[`Paper`](https://arxiv.org/abs/2503.02505)] | [[`huggingface`](https://huggingface.co/papers/2503.02505)] | [[`BibTex`](#citig_rocket)] | [![Openbayes Demo](https://img.shields.io/static/v1?label=Demo&message=OpenBayes%E8%B4%9D%E5%BC%8F%E8%AE%A1%E7%AE%97&color=green)](https://openbayes.com/console/public/tutorials/cHZ3teJXaQU) 
+[![Project](https://img.shields.io/badge/Project-ROCKET--2-blue)](https://craftjarvis.github.io/ROCKET-2/)
+[![Paper](https://img.shields.io/badge/Paper-arXiv%3A2503.02505-red)](https://arxiv.org/abs/2503.02505)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-Paper-yellow)](https://huggingface.co/papers/2503.02505)
+[![BibTeX](https://img.shields.io/badge/BibTeX-Citation-blueviolet)](#citig_rocket)
+[![OpenBayes Demo](https://img.shields.io/static/v1?label=Demo&message=OpenBayes%E8%B4%9D%E5%BC%8F%E8%AE%A1%E7%AE%97&color=green)](https://openbayes.com/console/public/tutorials/cHZ3teJXaQU)
 
 <b> ROCKET-2 successfully inflicted damage on the Ender Dragon for the first time and spontaneously developed the ability to build bridges. (end-to-end training, directly control mouse & keyboard)</b>
 
