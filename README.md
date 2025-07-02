@@ -18,6 +18,10 @@ All authors are affiliated with Team **[`CraftJarvis`](https://craftjarvis.githu
 [![BibTeX](https://img.shields.io/badge/BibTeX-Citation-blueviolet)](#citig_rocket)
 [![OpenBayes Demo](https://img.shields.io/static/v1?label=Demo&message=OpenBayes%E8%B4%9D%E5%BC%8F%E8%AE%A1%E7%AE%97&color=green)](https://openbayes.com/console/public/tutorials/cHZ3teJXaQU)
 
+<p align="center">
+  <img src="images/teaser2.png" width="100%" />
+</p>
+
 <b> ROCKET-2 successfully inflicted damage on the Ender Dragon for the first time and spontaneously developed the ability to build bridges. (end-to-end training, directly control mouse & keyboard)</b>
 
 <p align="center">
